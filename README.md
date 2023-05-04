@@ -1,6 +1,8 @@
 # RECORD
 This is the GitHub Repository providing an example code base for "RECIST-guided Consistent Objective Response Evaluation by Deep Learning on Immunotherapy-treated Liver Cancer".
 
+![RECORD](documentation/record_schematic.png)
+
 ## Getting started
 ### Dependencies
 This project requires Python 3 (3.7.13) with the following additional packages:
@@ -22,3 +24,23 @@ This project requires Python 3 (3.7.13) with the following additional packages:
 The numbers in parentheses denote the versions used during development of this project. Other python and package versions may or may not work as intended.
 
 A requirements file is provided in the root of this project and can be used to install the required packages via `pip install -r /path/to/requirements.txt`. If the process fails, you may need to upgrade setuptools via `pip install --upgrade setuptools`.
+
+### Try it with example data
+To get you started, example data and configuration files are provided. The data can be downloaded from [here](https://zenodo.org/record/6791937). Extract `data.zip` and place the contents into the `data` folder like this:
+```
+data/
+|
+|---- image/
+|---- label_gt/
+|---- mask/
+```
+
+data/
+|
+|---- dif_map/
+|---- image/
+|---- label_gt/
+|---- liver_ants/
+|---- mask/
+|---- mask_ants/
+|---- transformed_ants/
