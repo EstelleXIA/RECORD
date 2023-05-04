@@ -1,5 +1,6 @@
 # RECORD
 This is the GitHub Repository providing an example code base for "RECIST-guided Consistent Objective Response Evaluation by Deep Learning on Immunotherapy-treated Liver Cancer".
+
 ## Getting started
 ### Dependencies
 This project requires Python 3 (3.7.13) with the following additional packages:
@@ -17,3 +18,7 @@ This project requires Python 3 (3.7.13) with the following additional packages:
 * [Optimizers](https://pypi.org/project/Optimizers/) (0.1)
 * [scipy](https://pypi.org/project/scipy/) (1.7.3)
 * [SimpleITK](https://pypi.org/project/SimpleITK/) (2.2.1)
+
+The numbers in parentheses denote the versions used during development of this project. Other python and package versions may or may not work as intended.
+
+A requirements file is provided in the root of this project and can be used to install the required packages via `pip install -r /path/to/requirements.txt`. If the process fails, you may need to upgrade setuptools via `pip install --upgrade setuptools`.
