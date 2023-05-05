@@ -39,12 +39,13 @@ The `data/` contains demo CT and tumor mask files in the `.nii.gz` format. Filen
 
 | Patient_ID |          Filename          | Label | Set   |
 |------------|----------------------------|-------|-------|
-| 033002-004 | 033002-004-20180531.nii.gz | /     | TRAIN |
-| 033002-004 | 033002-004-20180723.nii.gz | SD    | TRAIN |
-| 033002-004 | 033002-004-20180831.nii.gz | SD    | TRAIN |
+| 033002-005 | 033002-005-20180611.nii.gz | /     | TRAIN |
+| 033002-005 | 033002-005-20180730.nii.gz | PD    | TRAIN |
 | ...        | ...                        | ...   | ...   |
-| 033002-005 | 033002-005-20180611.nii.gz | /     | TEST  |
-| 033002-005 | 033002-005-20180730.nii.gz | PD    | TEST  |
+
+| 033002-004 | 033002-004-20180531.nii.gz | /     | TEST  |
+| 033002-004 | 033002-004-20180723.nii.gz | SD    | TEST  |
+| 033002-004 | 033002-004-20180831.nii.gz | SD    | TEST  |
 
 There are some key steps of the RECORD model. The following part would introduce each part in detail.
 
@@ -119,6 +120,7 @@ Run `bash record_optim.sh`.
 | `--val_every`  | validation per `val_every` epoch |
 | `--logdir`  | RECORD log directory |
 | `--dif_map_path` | the difference map path |
+| `--out_channels` | default=2, background and foreground |
 | `--weight` | weights between classification and segmentation tasks |
 | `--infer_overlap` | overlap of ROIs in sliding window inference |
 | `--probabilistic` | use probablity predicted masks as outputs |
