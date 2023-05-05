@@ -70,10 +70,22 @@ Run the following line to register image pairs.
  * `--check` is to check whether ANTs is successfully performed. 
 
 #### 3. Livermask prediction
-Liver mask is to remove lesion outside the liver. We use the union of ``[livermask](https://github.com/andreped/livermask)'' and [pretrained nnU-Net abdominal organ](https://zenodo.org/record/3734294#.ZAGgnHZBw2z) segmentation.
+Liver mask is to remove lesion outside the liver. We use the union of ''[livermask](https://github.com/andreped/livermask)'' and [pretrained nnU-Net abdominal organ segmentation](https://zenodo.org/record/3734294#.ZAGgnHZBw2z).
 
 #### 4. Difference map generation
+We subtracted baseline mask from the follow-up mask, and obtained differences on single lesion level by 3D connected component analysis. Then, we labelled extremely large differences as candidate false positives and checked whether they were natural disease progression or model mispredictions with the help of other longitudinal CT scans. 
 
+![Difference Map](documentation/dif_map.png)
 Run the following line to get difference map.
 
 `python prep/dif_map.py --input ../data/mask_ants/ --output ../data/dif_map/ --livermask ../data/liver_ants/`
+
+* `--input` is the input folder of registered segmentation model masks
+* `--output` is the save path of the generated difference map
+* `--livermask` is optional, if use, the input folder of predicted liver masks
+
+#### 5. Prepare .json file for RECORD
+Prepare the test patient ids in `prep/test.txt`. Then run `python prep/record_json.py`.
+
+#### 6. Start RECORD training
+Run `bash record_optim.sh`.
