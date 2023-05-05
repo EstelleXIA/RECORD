@@ -35,6 +35,7 @@ data/
 |---- mask/
 ```
 
+```
 data/
 |
 |---- dif_map/
@@ -44,3 +45,12 @@ data/
 |---- mask/
 |---- mask_ants/
 |---- transformed_ants/
+```
+
+There are some key steps of the RECORD model.
+
+#### 1. Get original segmentation model predicted masks
+You can try any 3D segmentation model. Here we use two state-of-the-art model, [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/) and [Swin-Unetr](https://github.com/Project-MONAI/tutorials/blob/main/3d_segmentation/unetr_btcv_segmentation_3d.ipynb). Use `data/image/*.nii.gz` as input to get the predicted masks.
+
+The original predictions should be moved to `data/mask/`.
+
