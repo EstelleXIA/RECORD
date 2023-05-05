@@ -47,10 +47,33 @@ data/
 |---- transformed_ants/
 ```
 
-There are some key steps of the RECORD model.
+There are some key steps of the RECORD model. The following part would introduce each part in detail.
+
+![Key Steps](documentation/record_steps.png)
 
 #### 1. Get original segmentation model predicted masks
 You can try any 3D segmentation model. Here we use two state-of-the-art model, [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/) and [Swin-Unetr](https://github.com/Project-MONAI/tutorials/blob/main/3d_segmentation/unetr_btcv_segmentation_3d.ipynb). Use `data/image/*.nii.gz` as input to get the predicted masks.
 
 The original predictions should be moved to `data/mask/`.
 
+#### 2. Image and mask registration
+Advanced Normalization Tools ([ANTsPy](https://github.com/ANTsX/ANTsPy)) is used to make the baseline-follow-up image pair registered.
+
+Run the following line to register image pairs.
+
+ `python prep/ants_registrate.py --input_img ../data/image/ --input_mask ../data/mask/ --output ../data/transformed_ants/ --maskpath ../data/mask_ants/ --check`
+ 
+ * `--input_img` is the input folder of all images
+ * `--input_mask` is the input folder of all predicted masks
+ * `--output` is the forward and inverse transforms (dispplacement fields)
+ * `--maskpath` is the output registered masks.
+ * `--check` is to check whether ANTs is successfully performed. 
+
+#### 3. Livermask prediction
+Liver mask is to remove lesion outside the liver. We use the union of ``[livermask](https://github.com/andreped/livermask)'' and [pretrained nnU-Net abdominal organ](https://zenodo.org/record/3734294#.ZAGgnHZBw2z) segmentation.
+
+#### 4. Difference map generation
+
+Run the following line to get difference map.
+
+`python prep/dif_map.py --input ../data/mask_ants/ --output ../data/dif_map/ --livermask ../data/liver_ants/`
