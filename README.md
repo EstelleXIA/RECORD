@@ -35,7 +35,7 @@ data/
 |---- mask/
 ```
 #### 0. Data description
-The `data/` contains demo CT and tumor mask files in the `.nii.gz` format. Filename is named according to 'center-patient-time', i.e, center number of 033002, patient id of 004, and scan time of 20180531. CT scans are end with `_0000`, i.e., `data/img/*_0000.nii.gz`, while ground truth labels are named as `data/label_gt/*.nii.gz`. Each baseline-follow-up CT scan pair has a RECIST response outcome.
+The `data/` contains demo CT and tumor mask files in the `.nii.gz` format. Filename is named according to `center-patient-time`, i.e, center number of 033002, patient id of 004, and scan time of 20180531. CT scans are end with `_0000`, i.e., `data/img/*_0000.nii.gz`, while ground truth labels are named as `data/label_gt/*.nii.gz`. Each baseline-follow-up CT scan pair has a RECIST response outcome.
 
 | Patient_ID |          Filename          | Label | Set   |
 |------------|----------------------------|-------|-------|
