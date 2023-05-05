@@ -35,18 +35,6 @@ data/
 |---- mask/
 ```
 
-```
-data/
-|
-|---- dif_map/
-|---- image/
-|---- label_gt/
-|---- liver_ants/
-|---- mask/
-|---- mask_ants/
-|---- transformed_ants/
-```
-
 There are some key steps of the RECORD model. The following part would introduce each part in detail.
 
 ![Key Steps](documentation/record_steps.png)
@@ -60,14 +48,18 @@ The original predictions should be moved to `data/mask/`.
 Advanced Normalization Tools ([ANTsPy](https://github.com/ANTsX/ANTsPy)) is used to make the baseline-follow-up image pair registered.
 
 Run the following line to register image pairs.
+```
+python prep/ants_registrate.py --input_img ../data/image/ --input_mask ../data/mask/ --output ../data/transformed_ants/ --maskpath ../data/mask_ants/ --check
+```
 
- `python prep/ants_registrate.py --input_img ../data/image/ --input_mask ../data/mask/ --output ../data/transformed_ants/ --maskpath ../data/mask_ants/ --check`
- 
- * `--input_img` is the input folder of all images
- * `--input_mask` is the input folder of all predicted masks
- * `--output` is the forward and inverse transforms (dispplacement fields)
- * `--maskpath` is the output registered masks.
- * `--check` is to check whether ANTs is successfully performed. 
+|  command  | description |
+| ------------------- | ------------- |
+| `--input_img`  | the input folder of all images |
+| `--input_mask`  | the input folder of all predicted masks |
+| `--output`  | the forward and inverse transforms (dispplacement fields) |
+| `--maskpath`  | the output registered masks |
+| `-check`  | to check whether ANTs is successfully performed |
+
 
 #### 3. Livermask prediction
 Liver mask is to remove lesion outside the liver. We use the union of ''[livermask](https://github.com/andreped/livermask)'' and [pretrained nnU-Net abdominal organ segmentation](https://zenodo.org/record/3734294#.ZAGgnHZBw2z).
@@ -77,15 +69,53 @@ We subtracted baseline mask from the follow-up mask, and obtained differences on
 
 ![Difference Map](documentation/dif_map.png)
 Run the following line to get difference map.
+```
+python prep/dif_map.py --input ../data/mask_ants/ --output ../data/dif_map/ --livermask ../data/liver_ants/
+```
 
-`python prep/dif_map.py --input ../data/mask_ants/ --output ../data/dif_map/ --livermask ../data/liver_ants/`
+|  command  | description |
+| ------------------- | ------------- |
+| `--input`  | the input folder of registered segmentation model masks |
+| `--output`  | the save path of the generated difference map |
+| `--livermask`  | optional, if use, the input folder of predicted liver masks |
 
-* `--input` is the input folder of registered segmentation model masks
-* `--output` is the save path of the generated difference map
-* `--livermask` is optional, if use, the input folder of predicted liver masks
 
 #### 5. Prepare .json file for RECORD
-Prepare the test patient ids in `prep/test.txt`. Then run `python prep/record_json.py`.
+Prepare the test patient ids in `prep/test.txt`. Then run 
+```
+python prep/record_json.py
+```
 
 #### 6. Start RECORD training
+The `data/` folder should be structured as below.
+```
+data/
+|
+|---- dif_map/
+|---- image/
+|---- label_gt/
+|---- liver_ants/
+|---- mask/
+|---- mask_ants/
+|---- transformed_ants/
+```
 Run `bash record_optim.sh`.
+
+|  command  | description |
+| ------------------- | ------------- |
+| `--json_list`  | the prepared json file in step 5 |
+| `--data_dir`  | the root of the json file |
+| `--val_every`  | validation per `val_every` epoch |
+| `--logdir`  | RECORD log directory |
+| `--dif_map_path` | the difference map path |
+| `--weight` | weights between classification and segmentation tasks |
+| `--infer_overlap` | overlap of ROIs in sliding window inference |
+| `--probabilistic` | use probablity predicted masks as outputs |
+
+
+## Contact
+If you have any question, please contact this [Email](Estelle-xyj@sjtu.edu.cn).
+
+
+## Acknowledgements
+
