@@ -34,6 +34,17 @@ data/
 |---- label_gt/
 |---- mask/
 ```
+#### 0. Data description
+The `data/` contains demo CT and tumor mask files in the `.nii.gz` format. Filename is named according to 'center-patient-time', i.e, center number of 033002, patient id of 004, and scan time of 20180531. CT scans are end with `_0000`, i.e., `data/img/*_0000.nii.gz`, while ground truth labels are named as `data/label_gt/*.nii.gz`. Each baseline-follow-up CT scan pair has a RECIST response outcome.
+
+| Patient_ID |          Filename          | Label | Set   |
+|------------|----------------------------|-------|-------|
+| 033002-004 | 033002-004-20180531.nii.gz | /     | TRAIN |
+| 033002-004 | 033002-004-20180723.nii.gz | SD    | TRAIN |
+| 033002-004 | 033002-004-20180831.nii.gz | SD    | TRAIN |
+| ...        | ...                        | ...   | ...   |
+| 033002-005 | 033002-005-20180611.nii.gz | /     | TEST  |
+| 033002-005 | 033002-005-20180730.nii.gz | PD    | TEST  |
 
 There are some key steps of the RECORD model. The following part would introduce each part in detail.
 
