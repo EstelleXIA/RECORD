@@ -114,7 +114,7 @@ Run `bash record_optim.sh`.
 
 
 ## Contact
-If you have any question, please contact this [Email](Estelle-xyj@sjtu.edu.cn).
+If you have any question, please contact this [Email](mailto:Estelle-xyj@sjtu.edu.cn).
 
 
 ## Acknowledgements
