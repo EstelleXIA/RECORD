@@ -58,7 +58,7 @@ python prep/ants_registrate.py --input_img ../data/image/ --input_mask ../data/m
 | `--input_mask`  | the input folder of all predicted masks |
 | `--output`  | the forward and inverse transforms (dispplacement fields) |
 | `--maskpath`  | the output registered masks |
-| `-check`  | to check whether ANTs is successfully performed |
+| `--check`  | to check whether ANTs is successfully performed |
 
 
 #### 3. Livermask prediction
