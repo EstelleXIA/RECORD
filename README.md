@@ -43,8 +43,9 @@ The `data/` contains demo CT and tumor mask files in the `.nii.gz` format. Filen
 | 033002-005 | 033002-005-20180730.nii.gz | PD    | TRAIN |
 | ...        | ...                        | ...   | ...   |
 | 033002-004 | 033002-004-20180531.nii.gz | /     | TEST  |
-| 033002-004 | 033002-004-20180723.nii.gz | SD    | TEST  |
-| 033002-004 | 033002-004-20180831.nii.gz | SD    | TEST  |
+| 033002-004 | 033002-004-20180723.nii.gz | PD    | TEST  |
+| ...        | ...                        | ...   | ...   |
+| 033002-004 | 033002-004-20210512.nii.gz | SD    | TEST  |
 
 There are some key steps of the RECORD model. The following part would introduce each part in detail.
 
